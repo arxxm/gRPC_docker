@@ -4,12 +4,16 @@ import (
 	"context"
 	"fmt"
 	"os"
+
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/grpclog"
 )
 
 func main() {
 	opts := []grpc.DialOption{
 		grpc.WithInsecure(),
 	}
+
 	args := os.Args
 	conn, err := grpc.Dial("127.0.0.1:5300", opts...)
 
@@ -19,8 +23,8 @@ func main() {
 
 	defer conn.Close()
 
-	client := pb.NewReverseClient(conn)
-	request := &pb.Request{
+	client := reverse.NewReverseClient(conn)
+	request := &reverse.Request{
 		Message: args[1],
 	}
 	response, err := client.Do(context.Background(), request)
