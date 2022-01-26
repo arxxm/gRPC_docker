@@ -1,4 +1,4 @@
-module github.com/arxxm/gRPC_docker
+module github.com/arxxm/gRPC_docker/tree/master/protogo/reverse.pb.go
 
 go 1.13
 
